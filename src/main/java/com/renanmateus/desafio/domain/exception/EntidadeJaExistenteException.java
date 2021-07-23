@@ -1,4 +1,4 @@
-package com.renanmateus.desafio.Exception;
+package com.renanmateus.desafio.domain.exception;
 
 public class EntidadeJaExistenteException extends RuntimeException{
 
