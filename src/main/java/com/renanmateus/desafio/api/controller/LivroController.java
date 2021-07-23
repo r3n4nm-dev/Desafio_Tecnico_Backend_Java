@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,19 +32,28 @@ public class LivroController {
 		Page<LivroDTO> livrosDTO = livros.map(livro -> new LivroDTO(livro));
 		return livrosDTO;
 	}
-
+	
+	@ResponseStatus(value = HttpStatus.CREATED)
 	@PostMapping
 	public Livro salvar(@RequestBody Livro livro) {
 		return livroService.salvar(livro);
 	}
 
+	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping(value = "/{sbn}")
 	public Livro buscarPorSBN(@PathVariable Long sbn) {
 		return livroService.buscarPorSbn(sbn);
 	}
 
+	@ResponseStatus(code = HttpStatus.OK)
 	@PutMapping(value = "/{sbn}")
 	public Livro editar(@PathVariable Long sbn, @RequestBody Livro livro) {
 		return livroService.atualizar(sbn, livro);
+	}
+	
+	@ResponseStatus(code = HttpStatus.NO_CONTENT)
+	@DeleteMapping(value = "/{sbn}")
+	public void remover(@PathVariable Long sbn) {
+		livroService.deletar(sbn);
 	}
 }

@@ -47,4 +47,12 @@ public class LivroService {
 		}
 		throw new EntidadeNaoEncontradaException("Objeto não encontrado.");
 	}
+
+	public void deletar(Long sbn) {
+		if (livroRepository.findById(sbn).isPresent()) {
+			livroRepository.deleteById(sbn);
+		} else
+		throw new EntidadeNaoEncontradaException("Objeto não encontrado.");
+	}
+
 }
