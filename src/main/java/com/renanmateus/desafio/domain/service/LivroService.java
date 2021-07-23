@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.renanmateus.desafio.domain.exception.EntidadeJaExistenteException;
+import com.renanmateus.desafio.domain.exception.EntidadeNaoEncontradaException;
 import com.renanmateus.desafio.domain.model.Livro;
 import com.renanmateus.desafio.domain.repository.LivroRepository;
 
@@ -27,6 +28,13 @@ public class LivroService {
 	
 	public Page<Livro> listarLivrosEmEstoque(Pageable pageable) {
 		 return livroRepository.findByEstoqueGreaterThan(0, pageable);
+	}
+	
+	public Livro buscarPorSbn(Long sbn) {
+		Optional<Livro> livro = livroRepository.findById(sbn);
+		return livro.orElseThrow(() -> new EntidadeNaoEncontradaException("Objeto não encontrado."));
+		
+		
 	}
 	
 }
