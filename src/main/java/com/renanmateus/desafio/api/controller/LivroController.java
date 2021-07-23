@@ -1,6 +1,5 @@
 package com.renanmateus.desafio.api.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -37,8 +37,13 @@ public class LivroController {
 		return livroService.salvar(livro);
 	}
 
-	@GetMapping(value = "/{sbn}") 
-		public Livro buscarPorSBN( @PathVariable Long sbn) {
+	@GetMapping(value = "/{sbn}")
+	public Livro buscarPorSBN(@PathVariable Long sbn) {
 		return livroService.buscarPorSbn(sbn);
+	}
+
+	@PutMapping(value = "/{sbn}")
+	public Livro editar(@PathVariable Long sbn, @RequestBody Livro livro) {
+		return livroService.atualizar(sbn, livro);
 	}
 }
