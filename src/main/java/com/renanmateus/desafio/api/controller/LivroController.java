@@ -1,5 +1,7 @@
 package com.renanmateus.desafio.api.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,7 +37,7 @@ public class LivroController {
 	
 	@ResponseStatus(value = HttpStatus.CREATED)
 	@PostMapping
-	public Livro salvar(@RequestBody Livro livro) {
+	public Livro salvar(@Valid @RequestBody Livro livro) {
 		return livroService.salvar(livro);
 	}
 
@@ -47,8 +49,8 @@ public class LivroController {
 
 	@ResponseStatus(code = HttpStatus.OK)
 	@PutMapping(value = "/{sbn}")
-	public Livro editar(@PathVariable Long sbn, @RequestBody Livro livro) {
-		return livroService.atualizar(sbn, livro);
+	public Livro editar(@PathVariable Long sbn, @RequestBody @Valid LivroDTO livrodto) {
+		return livroService.atualizar(sbn, livrodto);
 	}
 	
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)

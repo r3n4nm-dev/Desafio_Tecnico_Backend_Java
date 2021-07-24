@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.renanmateus.desafio.domain.exception.EntidadeJaExistenteException;
 import com.renanmateus.desafio.domain.exception.EntidadeNaoEncontradaException;
 import com.renanmateus.desafio.domain.model.Livro;
+import com.renanmateus.desafio.domain.model.LivroDTO;
 import com.renanmateus.desafio.domain.repository.LivroRepository;
 
 @Service
@@ -37,10 +38,10 @@ public class LivroService {
 
 	}
 
-	public Livro atualizar(Long sbn, Livro livro) {
+	public Livro atualizar(Long sbn, LivroDTO livrodto) {
 		if (livroRepository.findById(sbn).isPresent()) {
 			Livro livroSalvo = new Livro();
-			BeanUtils.copyProperties(livro, livroSalvo, "id");
+			BeanUtils.copyProperties(livrodto, livroSalvo, "sbn");
 			livroSalvo.setSbn(sbn);
 			livroRepository.save(livroSalvo);
 			return livroSalvo;
