@@ -7,11 +7,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "livros")
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Livro {
 
 	//Standard Book Number

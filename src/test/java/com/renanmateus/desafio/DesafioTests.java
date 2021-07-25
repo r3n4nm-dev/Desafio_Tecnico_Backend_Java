@@ -1,10 +1,10 @@
-package com.renanmateus.desafiotecnicobackendjava;
+package com.renanmateus.desafio;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DesafioTecnicoBackendJavaApplicationTests {
+class DesafioTests {
 
 	@Test
 	void contextLoads() {

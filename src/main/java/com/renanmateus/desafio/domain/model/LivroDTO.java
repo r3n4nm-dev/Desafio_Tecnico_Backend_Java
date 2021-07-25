@@ -23,9 +23,12 @@ public class LivroDTO {
 
 	
 	public LivroDTO(Livro livro) {
+		this.descricao = livro.getDescricao();
+		this.autor = livro.getAutor();
 		this.nome = livro.getNome();
 		this.estoque = livro.getEstoque();
 	}
+	
 
 	public LivroDTO() {
 	}
