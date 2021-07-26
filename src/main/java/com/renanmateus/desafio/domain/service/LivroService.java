@@ -28,8 +28,11 @@ public class LivroService {
 		throw new EntidadeJaExistenteException("Objeto já inserido");
 	}
 
-	public Page<Livro> listarLivrosEmEstoque(Pageable pageable) {
-		return livroRepository.findByEstoqueGreaterThan(0, pageable);
+	public Page<LivroDTO> listarLivrosEmEstoque(Pageable pageable) {
+		Page<Livro> livros = livroRepository.findByEstoqueGreaterThan(0, pageable);
+		Page<LivroDTO> livrosDTO = livros.map(livro -> new LivroDTO(livro.getNome()));
+		
+		return livrosDTO;
 	}
 
 	public Livro buscarPorSbn(Long sbn) {

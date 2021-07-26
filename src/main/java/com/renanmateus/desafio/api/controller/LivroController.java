@@ -30,9 +30,8 @@ public class LivroController {
 	@ResponseStatus(code = HttpStatus.OK)
 	@GetMapping()
 	public Page<LivroDTO> listar(Pageable pageable) {
-		Page<Livro> livros = livroService.listarLivrosEmEstoque(pageable);
-		Page<LivroDTO> livrosDTO = livros.map(livro -> new LivroDTO(livro));
-		return livrosDTO;
+		Page<LivroDTO> livrosDTO = livroService.listarLivrosEmEstoque(pageable);
+ 		return livrosDTO;
 	}
 	
 	@ResponseStatus(value = HttpStatus.CREATED)

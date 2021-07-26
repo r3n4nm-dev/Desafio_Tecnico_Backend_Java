@@ -29,6 +29,11 @@ public class LivroDTO {
 		this.estoque = livro.getEstoque();
 	}
 	
+	public LivroDTO(String nome) {
+		this.nome = nome;
+	}
+	
+	
 
 	public LivroDTO() {
 	}

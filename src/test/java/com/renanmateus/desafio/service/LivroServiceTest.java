@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.TransactionSystemException;
 
 import com.renanmateus.desafio.domain.exception.EntidadeJaExistenteException;
@@ -75,6 +77,14 @@ public class LivroServiceTest {
 		assertThat(erroEsperado).isNotNull();
 	}
 
+	@Test
+	public void deveRetornarLivrosEmEstoque_QuandoBuscarPorTodos() {
+		Pageable pageable = PageRequest.of(0, 5);
+		Assertions.assertDoesNotThrow(()-> livroService.listarLivrosEmEstoque(pageable));
+	
+	}
+	
+	
 	@Test
 	public void deveRetornarLivro_QuandoBuscarPorSbn() {
 		livroService.salvar(livroTeste);
